@@ -38,9 +38,14 @@ We can also store our operations into variables. We can reference those variable
 
 
 ```{r variables}
+<<<<<<< Updated upstream
 unluckyNumber <- 5+8
 
 luckyNumber <- unluckyNumber-6
+=======
+unlucky <- 5+8
+lucky <- unlucky - 6
+>>>>>>> Stashed changes
 ```
 
 ## Using Functions and Packages
@@ -48,9 +53,14 @@ luckyNumber <- unluckyNumber-6
 Using a function is simple. These are some built-in functions
 
 ```{r functions}
+<<<<<<< Updated upstream
 abs(5-8)
 
 sqrt(luckyNumber)
+=======
+abs(-3)
+sqrt(lucky)
+>>>>>>> Stashed changes
 ```
 
 ## Installing and Using Packages
@@ -63,7 +73,10 @@ This command pulls and stores the package into your library. If you want to actu
 
 ```{r swirl}
 library(swirl)
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 ```
 
 `swirl` is an important package for beginners because it will show you how to do the basics step by step.
@@ -83,8 +96,11 @@ For this example we are going to use one of the embedded datasets within R.
 
 ```{r mtcars}
 mtcars
+<<<<<<< Updated upstream
 
 dim(mtcars)
+=======
+>>>>>>> Stashed changes
 ```
 
 Looking at this output, you can see this dataframe has 32 rows, and 11 columns. You could also use the `dim(mtcars)` function
@@ -96,9 +112,12 @@ If you are interested in looking at the horsepower data for each one of these ve
 
 ```{r columns}
 mtcars$hp
+<<<<<<< Updated upstream
 mtcars[,4]
 
 mtcars[,"hp"]
+=======
+>>>>>>> Stashed changes
 ```
 
 ### Selecting Rows
@@ -115,10 +134,15 @@ mtcars["Mazda RX4",]
 You can bring both together.
 
 ```{r slicing}
+<<<<<<< Updated upstream
 mtcars[1:10,4:6]
 mtcars$hp[1:10]
 
 1:10
+=======
+mtcars$hp[1]
+mtcars[1,4]
+>>>>>>> Stashed changes
 ```
 
 ## Creating New Column
@@ -126,13 +150,17 @@ mtcars$hp[1:10]
 You will often times need to transform one column into another. Suppose we want the square root of horsepower
 
 ```{r}
+<<<<<<< Updated upstream
 mtcars$sqrtHP <- sqrt(mtcars$hp)
+=======
+sqrt(mtcars$hp)
+>>>>>>> Stashed changes
 ```
 
 If we want to add this column to the overall dataset, we will need to assign it.
 
 ```{r}
-
+mtcars$sqrtHP <- sqrt(mtcars$hp)
 ```
 
 # Getting Your Bearings
@@ -154,9 +182,14 @@ Depending upon the filetype, you may need special packages in order to import th
 
 ```{r}
 library(readxl)
+<<<<<<< Updated upstream
 
 Wealth1percent <- read_excel("../Data/Wealth1percent.xlsx",
                              col_types = c("date", "numeric","numeric"))
 
 summary(Wealth1percent)
+=======
+
+wealth1percent <- read_excel("../Data/Wealth1percent.xlsx", col_types = c("date", "numeric","numeric"))
+>>>>>>> Stashed changes
 ```
