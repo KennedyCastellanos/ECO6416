@@ -46,7 +46,7 @@ plot(mail$PopUSA, mail$FirstClVol,
 
 ```{r}
 model_1 <- lm(FirstClVol ~ PopUSA, data = mail)
-model_1
+summary (model_1)
 ```
 
 ## Thing 1 
@@ -74,5 +74,11 @@ model_1$coefficients[2]*10
 ```{r}
 plot(mail$Time,mail$FirstClVol, type = "l")
 abline(lm(FirstClVol ~ Time, data = mail),lty = 2, col = "red")
+
+model_2 <- lm(FirstclVol ~ Time, data=mail)
+
+newPrediction <- data.frame(Time= 62)
+
+predict(model_2, newdata = newPrediction)
 ```
 
