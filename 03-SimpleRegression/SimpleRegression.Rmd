@@ -1,5 +1,5 @@
 ---
-title: "Basic Statistics in R"
+title: "Simple Regression in R"
 author: "ECO 6416"
 date: "`r Sys.Date()`"
 output: 
@@ -68,8 +68,9 @@ model_1$coefficients[2]*10
 ```
 
 
-## Time series graphs
+# Time Series
 
+## Graph
 
 ```{r}
 plot(mail$Time,mail$FirstClVol, type = "l")
@@ -80,5 +81,29 @@ model_2 <- lm(FirstclVol ~ Time, data=mail)
 newPrediction <- data.frame(Time= 62)
 
 predict(model_2, newdata = newPrediction)
+```
+
+
+## Regression
+
+```{r}
+ts_model <- lm(FirstClVol ~ Time, data = mail)
+
+summary(ts_model)
+```
+
+## Thing 1
+
+```{r}
+newForecast <- data.frame(Time = 62)
+
+predict(ts_model,newdata = newForecast)
+```
+
+
+## Thing 2
+
+```{r}
+ts_model$coefficients[2]*.25
 ```
 

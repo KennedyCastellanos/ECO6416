@@ -13,8 +13,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 
 library(readxl)
+<<<<<<< HEAD
 library(tidyverse)
 
+=======
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 # Wealth of 1 Percent
@@ -22,10 +25,15 @@ library(tidyverse)
 This dataset was obtained from FRED which shows the share of total net worth held by the top 1%. It is represented over time.
 
 ```{r wealth}
+<<<<<<< HEAD
 Wealth1percent <- read_excel("..Data/Wealth1percent.xlsx",
 col_types = c("date", "numeric", "numeric"))
 
 colnames(Wealth1percent)[3] <- "TimeCounter"
+=======
+Wealth1percent <- read_excel("../Data/Wealth1percent.xlsx",
+col_types = c("date", "numeric","numeric"))
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 This gives us a range of data from the third quarter of 1989 to the first quarter of 2021
@@ -34,8 +42,16 @@ This gives us a range of data from the third quarter of 1989 to the first quarte
 
 
 ```{r wealthplot , message=F}
+<<<<<<< HEAD
 plot(Wealth1percent$'Time Counter',Wealth1percent$Share, type = "Wealth1percent")
 abline(lm(Share ~ 'Time Counter', data = wealth1percent), lty = 2, col="red")
+=======
+ts_model <- lm(Share ~ TimeCounter, data = Wealth1percent)
+
+
+plot(Wealth1percent$TimeCounter,Wealth1percent$Share, type = "l")
+abline(ts_model,lty = 2, col = "red")
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 
@@ -44,10 +60,14 @@ abline(lm(Share ~ 'Time Counter', data = wealth1percent), lty = 2, col="red")
 We can see the trend in an upwards manner, let's see what the quarterly change in slope is:
 
 ```{r wealth regression}
+<<<<<<< HEAD
 wealthRegression <- lm(Share ~ Time Counter, data=Wealth1percent)
 wealthRegression$coefficients[2]
 
 summary(wealthRegression)
+=======
+summary(ts_model)
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 in this case, the share of wealth held by the top 1% is increasing by 0.05% each quarter.
@@ -57,9 +77,15 @@ in this case, the share of wealth held by the top 1% is increasing by 0.05% each
 Suppose we want to predict the share of wealth 2 quarters form now:
 
 ```{r}
+<<<<<<< HEAD
 newPrediction ,_ data.frame(TimeCounter = 133)
 
 predict(wealthRegression, newdata = newPrediction)
+=======
+newForecast <- data.frame(TimeCounter = max(Wealth1percent$TimeCounter) + 2)
+
+predict(ts_model, newdata = newForecast)
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 
@@ -68,21 +94,29 @@ predict(wealthRegression, newdata = newPrediction)
 This data was pulled for March 2020 for covid cases in the US
 
 ```{r}
+<<<<<<< HEAD
 Covid <- read_excel("Home/Documents/GitHub/ECO6416/Data/Covid.xlsx",
                     col_types = c("date", "numeric", "numeric"))
+=======
+Covid <- read_excel("../Data/Covid.xlsx")
+>>>>>>> 2396e99ef388514b91bfd1e9b78d78d206bbf634
 ```
 
 ## Plot
 
 ```{r}
+ts_model <- lm(cases ~ Day, data = Covid)
 
+
+plot(Covid$Day,Covid$cases, type = "l")
+abline(ts_model,lty = 2, col = "red")
 
 ```
 
 ## Regression
 
 ```{r}
-
+summary(ts_model)
 ```
 
 
@@ -91,7 +125,9 @@ Covid <- read_excel("Home/Documents/GitHub/ECO6416/Data/Covid.xlsx",
 What would be the predicted number of cases by April 15, 2020?
 
 ```{r}
+newForecast <- data.frame(Day = 46)
 
+predict(ts_model, newdata = newForecast, level = "confidence")
 ```
 
 ## Thing 2 
@@ -99,7 +135,7 @@ What would be the predicted number of cases by April 15, 2020?
 On average, how many new cases of covid are there daily?
 
 ```{r}
-
+ts_model$coefficients[2]
 
 ```
 
